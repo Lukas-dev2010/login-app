@@ -1,33 +1,43 @@
-const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-
+const express = require('express');
 const router = express.Router();
-const SECRET = "dein_super_geheimer_token"; // später in .env-Datei
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
-router.post("/register", async(req, res) => {
+// Registrierung
+router.post('/register', async(req, res) => {
     const { username, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
+
     try {
+        const existingUser = await User.findOne({ username });
+        if (existingUser) return res.status(400).json({ message: 'Benutzername bereits vergeben' });
+
+        const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({ username, password: hashedPassword });
         await newUser.save();
-        res.status(201).json({ message: "Registrierung erfolgreich" });
+
+        res.status(201).json({ message: 'Benutzer erstellt' });
     } catch (err) {
-        res.status(400).json({ error: "Benutzername existiert bereits" });
+        res.status(500).json({ message: 'Serverfehler' });
     }
 });
 
-router.post("/login", async(req, res) => {
+// Login
+router.post('/login', async(req, res) => {
     const { username, password } = req.body;
-    const user = await User.findOne({ username });
-    if (!user) return res.status(400).json({ error: "Benutzer nicht gefunden" });
 
-    const valid = await bcrypt.compare(password, user.password);
-    if (!valid) return res.status(401).json({ error: "Falsches Passwort" });
+    try {
+        const user = await User.findOne({ username });
+        if (!user) return res.status(400).json({ message: 'Ungültige Anmeldedaten' });
 
-    const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: "1h" });
-    res.json({ message: "Login erfolgreich", token });
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).json({ message: 'Ungültige Anmeldedaten' });
+
+        const token = jwt.sign({ userId: user._id }, 'DEIN_GEHEIMNIS', { expiresIn: '1h' });
+        res.json({ token });
+    } catch (err) {
+        res.status(500).json({ message: 'Serverfehler' });
+    }
 });
 
 module.exports = router;
