@@ -1,0 +1,254 @@
+body {
+    margin: 0;
+    background-color: #030407;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    font-family: sans-serif;
+}
+
+.blur-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(85px);
+}
+
+.H {
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+    position: absolute;
+}
+
+#H1 {
+    background-color: rgba(127, 255, 223, 0.8);
+    top: 15%;
+    left: 65%;
+    animation: move1 ease-in-out infinite;
+    animation-direction: alternate;
+    animation-duration: 6s;
+    animation-delay: 0.6s;
+}
+
+@keyframes move1 {
+    to {
+        transform: translateX(150%);
+    }
+}
+
+#H2 {
+    background-color: rgba(159, 43, 226, 0.8);
+    top: 22%;
+    left: 20%;
+    animation: move2 ease-in-out infinite;
+    animation-direction: alternate-reverse;
+    animation-duration: 6s;
+    animation-delay: 0.6s;
+}
+
+@keyframes move2 {
+    to {
+        transform: translateX(-120%);
+    }
+}
+
+#H3 {
+    background-color: rgb(130, 183, 248, 0.8);
+    top: 80%;
+    left: 10%;
+    animation: move3 ease-in-out infinite;
+    animation-direction: alternate-reverse;
+    animation-duration: 6.5s;
+    animation-delay: 1.2;
+}
+
+@keyframes move3 {
+    to {
+        transform: translate(80%, 0%);
+    }
+}
+
+#H4 {
+    background-color: rgb(54, 125, 255, 0.8);
+    top: 70%;
+    left: 95%;
+    animation: move4 ease-in-out infinite;
+    animation-direction: alternate;
+    animation-duration: 6s;
+    animation-delay: 1.2s;
+}
+
+@keyframes move4 {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.Login {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 340px;
+    height: 400px;
+    background-color: rgba(28, 28, 28, 1);
+    z-index: 3;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.Login::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 340px;
+    height: 400px;
+    background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: line 6s linear infinite;
+}
+
+.Login::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 340px;
+    height: 400px;
+    background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: line 6s linear infinite;
+    animation-delay: -15s;
+}
+
+.borderline {
+    position: absolute;
+    top: 0;
+    inset: 0;
+}
+
+.borderline::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 340px;
+    height: 400px;
+    background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: line 6s linear infinite;
+    animation-delay: -7.5s;
+}
+
+.borderline::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 340px;
+    height: 400px;
+    background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: line 6s linear infinite;
+    animation-delay: -10.5s;
+}
+
+@keyframes line {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.Login form {
+    position: absolute;
+    inset: 4px;
+    background-color: #222;
+    padding: 50px 40px;
+    border-radius: 8px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.Login form h2 {
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+.Login form .InputBox {
+    position: relative;
+    width: 300px;
+    margin-top: 25px;
+}
+
+.Login form .InputBox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+.Login form .InputBox span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 0px 10px;
+    pointer-events: none;
+    color: #8f8f8f;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+.Login form .InputBox input:valid~span,
+.Login form .InputBox input:focus~span {
+    color: #fff;
+    font-size: 0.85em;
+    transform: translateY(-50px);
+}
+
+.Login form .InputBox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.Login form .InputBox input:valid~i,
+.Login form .InputBox input:focus~i {
+    height: 44px;
+}
