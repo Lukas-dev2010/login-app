@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    geld: {
+        type: Number,
+        default: 10000
+    },
 });
 
 module.exports = mongoose.model('User', UserSchema);

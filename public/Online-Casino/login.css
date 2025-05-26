@@ -252,3 +252,116 @@ body {
 .Login form .InputBox input:focus~i {
     height: 44px;
 }
+
+.Buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    width: 320px;
+}
+
+.Buttons #login {
+    position: relative;
+    padding: 11px 25px;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 100px;
+    margin-right: 50px;
+    margin-left: 15px;
+    transition: 0.6s;
+    overflow: hidden;
+}
+
+.Buttons #login::after {
+    content: "";
+    position: absolute;
+    top: 39%;
+    right: -40px;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    rotate: 320deg;
+    background-image: url('Bilder/send.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: right 0.6s ease;
+    pointer-events: none;
+}
+
+.Buttons #login:focus,
+.Buttons #login:hover {
+    font-size: 0.85em;
+    padding-left: 15px;
+    padding-right: 50px;
+}
+
+.Buttons #login:hover::after {
+    right: 3px;
+}
+
+.Buttons button.flug::after {
+    animation: flug 1s forwards;
+}
+
+@keyframes flug {
+    0% {
+        transform: translate(0, -50%) rotate(0deg);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(-10px, -60%) rotate(-10deg);
+    }
+    50% {
+        transform: translate(30px, -55%) rotate(10deg);
+    }
+    100% {
+        transform: translate(300px, -80%) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+.Buttons button {
+    position: relative;
+    padding: 11px 25px;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.Buttons button::after {
+    content: "";
+    position: absolute;
+    top: 39%;
+    right: -40px;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    rotate: 320deg;
+    background-image: url('Bilder/send.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: right 0.6s ease;
+    pointer-events: none;
+}
+
+.Buttons button:focus,
+.Buttons button:hover {
+    font-size: 0.85em;
+    padding-left: 15px;
+    padding-right: 50px;
+}
+
+.Buttons button:hover::after {
+    right: 3px;
+}
